@@ -1,0 +1,13 @@
+{
+  "name": "muse-ai-dating-desktop",
+  "version": "0.1.0",
+  "description": "Desktop wrapper for the live Muse AI Dating space",
+  "main": "main.js",
+  "private": true,
+  "scripts": {
+    "start": "electron ."
+  },
+  "devDependencies": {
+    "electron": "^33.2.1"
+  }
+}
