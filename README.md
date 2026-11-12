@@ -19,6 +19,8 @@ Open the repository in Android Studio, or build in GitHub Actions. The app uses 
 
 The live URL is kept in `app/src/main/java/com/fedos/museaidating/SpaceConfig.kt`. Change it there if the space URL changes.
 
+The wrapper hides the Muse-hosted platform header locally using CSS. This removes the white title/login bar inside the app, but it does not modify the hosted Muse HTML. Opening the URL directly in a browser will still show Muse's header.
+
 ## Desktop app
 
 ```bash

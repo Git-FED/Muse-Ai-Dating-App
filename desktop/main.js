@@ -3,6 +3,12 @@ const { app, BrowserWindow, shell } = require('electron');
 const LIVE_SPACE_URL =
   'https://muse.ai/s/muse-ai-dating-pp6emaxzl3x0l/CMdkNgelgREhwP9gD0EJmuD-Bb2njY3t9mME77Pu13E';
 
+const HIDE_MUSE_PLATFORM_HEADER = `
+  body > div > header {
+    display: none !important;
+  }
+`;
+
 function createWindow() {
   const win = new BrowserWindow({
     width: 1280,
@@ -18,6 +24,10 @@ function createWindow() {
   });
 
   win.loadURL(LIVE_SPACE_URL);
+
+  win.webContents.on('did-finish-load', () => {
+    win.webContents.insertCSS(HIDE_MUSE_PLATFORM_HEADER);
+  });
 
   win.webContents.setWindowOpenHandler(({ url }) => {
     shell.openExternal(url);

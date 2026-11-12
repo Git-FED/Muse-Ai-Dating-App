@@ -10,6 +10,24 @@ import androidx.appcompat.app.AppCompatActivity
 class MainActivity : AppCompatActivity() {
     private lateinit var webView: WebView
 
+    private val hideMusePlatformHeader = """
+        (() => {
+          const styleId = 'muse-wrapper-cleanup';
+          const css = `
+            body > div > header {
+              display: none !important;
+            }
+          `;
+          let style = document.getElementById(styleId);
+          if (!style) {
+            style = document.createElement('style');
+            style.id = styleId;
+            style.textContent = css;
+            document.head.appendChild(style);
+          }
+        })();
+    """.trimIndent()
+
     @SuppressLint("SetJavaScriptEnabled")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,7 +38,12 @@ class MainActivity : AppCompatActivity() {
         webView.settings.domStorageEnabled = true
         webView.settings.allowFileAccess = false
         webView.settings.allowContentAccess = false
-        webView.webViewClient = WebViewClient()
+        webView.webViewClient = object : WebViewClient() {
+            override fun onPageFinished(view: WebView?, url: String?) {
+                super.onPageFinished(view, url)
+                view?.evaluateJavascript(hideMusePlatformHeader, null)
+            }
+        }
         webView.webChromeClient = WebChromeClient()
         webView.loadUrl(SpaceConfig.LIVE_SPACE_URL)
     }

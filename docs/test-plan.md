@@ -15,6 +15,7 @@ Run the brief → screening → demo profiles → fit score → date plan flow.
 3. Confirm the same space loads inside the WebView.
 4. Confirm JavaScript, sign-in state, and page navigation work.
 5. Use the Android back button to navigate inside the WebView.
+6. Confirm the Muse platform title/login bar is hidden while the dating page content remains visible.
 
 ## 3. Test desktop
 
@@ -25,6 +26,7 @@ npm start
 ```
 
 Confirm the Electron window loads the same live URL.
+Confirm the Muse platform title/login bar is hidden.
 
 ## 4. Verify live edits are not baked in
 
